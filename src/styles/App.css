@@ -1,0 +1,13 @@
+/* src/styles/App.css */
+body, html, #root{
+  font-family: Arial, sans-serif;
+  background-color: white;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+main {
+  min-height: 80vh;
+}
