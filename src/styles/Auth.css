@@ -1,35 +1,65 @@
-.auth-container {
-  max-width: 400px;
-  margin: 4rem auto;
-  padding: 2rem;
+.auth-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Left background image panel */
+.auth-left {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  display: none;
+}
+
+.login-bg {
+  background-image: url('https://images.unsplash.com/photo-1558611848-73f7eb4001aa?auto=format&fit=crop&w=800&q=80');
+}
+
+.signup-bg {
+  background-image: url('https://images.unsplash.com/photo-1571731956672-643c6b8d5a6d?auto=format&fit=crop&w=800&q=80');
+}
+
+.auth-right {
+  flex: 1;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.auth-container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: darkgreen;
-}
-
-.auth-container form {
+.auth-form {
+  max-width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
-.auth-container label {
-  margin: 0.5rem 0 0.2rem;
+.auth-form h2 {
+  font-size: 2rem;
+  color: darkgreen;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: #555;
+}
+
+.auth-form label {
   font-weight: bold;
+  margin-bottom: 0.3rem;
   color: #333;
 }
 
-.auth-container input {
-  padding: 0.6rem;
-  border-radius: 6px;
+.auth-form input {
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
   border: 1px solid #ccc;
-  margin-bottom: 1rem;
+  border-radius: 6px;
   font-size: 1rem;
 }
 
@@ -37,14 +67,50 @@
   background-color: orange;
   color: black;
   font-weight: bold;
+  padding: 0.75rem;
   border: none;
-  padding: 0.8rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
 
 .auth-btn:hover {
   background-color: darkgreen;
   color: white;
+}
+
+.switch-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.switch-text a {
+  color: orange;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch-text a:hover {
+  color: darkgreen;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .auth-page {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    display: none;
+  }
+
+  .auth-right {
+    padding: 3rem 1.5rem;
+  }
+
+  .auth-form {
+    padding: 0;
+  }
 }

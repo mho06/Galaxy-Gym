@@ -45,6 +45,25 @@
   border-radius: 2px;
 }
 
+.logout-btn, .join-btn {
+  background: none;
+  border: none;
+  color: orange;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logout-btn:hover, .join-btn:hover {
+  color: darkgreen;
+}
+
+.navbar-user {
+  color: #aaa;
+  font-style: italic;
+  margin-left: 1rem;
+}
+
+
 /* Responsive Nav */
 @media (max-width: 768px) {
   .navbar-toggle {

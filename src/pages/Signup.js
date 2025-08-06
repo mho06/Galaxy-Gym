@@ -1,50 +1,67 @@
 import React, { useState } from 'react';
 import '../styles/Auth.css';
+import { useNavigate, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
 
-  const handleSubmit = (e) => {
+
+  const handleSignup = async (e) => {
     e.preventDefault();
-    console.log('Signup:', { name, email, password });
-    // TODO: Send to backend
+    setError('');
+
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/signup', {
+        method: 'POST',
+        credentials: 'include', // ✅ Send cookies
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw Error(data.error || 'Signup failed');
+      setUser(data.user);
+      navigate('/dashboard');
+
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
-    <div className="auth-container">
-      <h2>Create Account</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input 
-          type="text" 
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)} 
-          required 
-        />
+    <div className="auth-page">
+      <div className="auth-left signup-bg"></div>
+      <div className="auth-right">
+        <form className="auth-form" onSubmit={handleSignup}>
+          <h2>Create Account</h2>
+          <p className="subtitle">Join Galaxy Gym and start your transformation</p>
 
-        <label>Email</label>
-        <input 
-          type="email" 
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
+          <label>Name</label>
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
 
-        <label>Password</label>
-        <input 
-          type="password" 
-          placeholder="Create a password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
+          <label>Email</label>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-        <button type="submit" className="auth-btn">Sign Up</button>
-      </form>
+          <label>Password</label>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+
+          <button className="auth-btn" type="submit">Sign Up</button>
+
+          <p className="switch-text">Already have an account? <Link to="/login">Login</Link></p>
+        </form>
+      </div>
     </div>
   );
 }

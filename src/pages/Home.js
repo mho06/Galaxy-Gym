@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import { AuthContext } from '../context/AuthContext';
 
 function Home() {
+  const { user, loading } = useContext(AuthContext);
+
   return (
     <div className="home">
       <section className="hero">
         <div className="hero-content">
           <h1>Galaxy Gym</h1>
           <p>Your destination for strength, sweat, and self-improvement.</p>
-          <div className="hero-buttons">
-            <Link to="/signup" className="btn btn-primary">Join Now</Link>
-            <Link to="/login" className="btn btn-outline">Member Login</Link>
-          </div>
+
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="hero-buttons">
+              {user ? (
+                <Link to="/dashboard" className="btn btn-primary">Go to Dashboard</Link>
+              ) : (
+                <>
+                  <Link to="/signup" className="btn btn-primary">Join Now</Link>
+                  <Link to="/login" className="btn btn-outline">Member Login</Link>
+                </>
+              )}
+            </div>
+          )}
         </div>
       </section>
 
