@@ -2,15 +2,25 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import { AuthContext } from '../context/AuthContext';
+import GalaxyLogo from "../assets/Galaxy-Logo.png";
+// import BgImage from "../assets/bg.png";
 
 function Home() {
   const { user, loading } = useContext(AuthContext);
 
   return (
     <div className="home">
-      <section className="hero">
+      <section
+        className="hero"
+        // style={{ backgroundImage: `url(${BgImage})` }}
+      >
         <div className="hero-content">
-          <h1>Galaxy Gym</h1>
+          <img
+            src={GalaxyLogo}
+            alt="Galaxy Gym"
+            className="hero-logo"
+          />
+
           <p>Your destination for strength, sweat, and self-improvement.</p>
 
           {loading ? (

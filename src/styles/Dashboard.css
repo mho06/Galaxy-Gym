@@ -1,20 +1,20 @@
 .dashboard-container {
   padding: 2rem;
-  max-width: 600px;
-  margin: auto;
+  max-width: 700px;
+  margin: 100px auto 2rem auto;
   background: #f7f7f7;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0,0,0,0.1);
-  margin-top: 3rem;
   text-align: center;
 }
 
 .dashboard-container h1 {
   font-size: 2rem;
-  color: darkgreen;
+  color: #01905A;
   margin-bottom: 1.5rem;
 }
 
+/* Basic info card */
 .dashboard-card {
   background: white;
   padding: 1.5rem;
@@ -24,12 +24,89 @@
 }
 
 .dashboard-card p {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
+  font-size: 1.05rem;
+  margin: 0.4rem 0;
+}
+
+/* Dashboard sections */
+.dashboard-section {
+  margin-top: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.dashboard-section h2 {
+  font-size: 1.2rem;
+  color: #01905A;
+  margin-bottom: 0.8rem;
+}
+
+.dashboard-section ul {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.dashboard-section li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Announcement box */
+.dashboard-alert {
+  background-color: #fff3cd;
+  border-left: 5px solid #ffc107;
+}
+
+/* Button layout */
+.dashboard-buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-btn {
+  background: #01905A;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  background: seagreen;
+}
+
+/* Admin tools */
+.dashboard-admin-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.dashboard-admin-panel li {
+  margin-bottom: 0.6rem;
+}
+
+.dashboard-admin-panel a {
+  color: #01905A;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dashboard-admin-panel a:hover {
+  text-decoration: underline;
 }
 
 .dashboard-loading {
   text-align: center;
-  margin-top: 4rem;
+  margin-top: 5rem;
   font-size: 1.2rem;
 }

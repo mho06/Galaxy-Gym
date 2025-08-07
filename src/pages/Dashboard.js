@@ -1,45 +1,74 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import LogoutButton from '../components/LogoutButton';
 import { AuthContext } from '../context/AuthContext';
 import '../styles/Dashboard.css';
 
 function Dashboard() {
-  const { user, setUser } = useContext(AuthContext); // ✅ use context directly
-  const [loading, setLoading] = useState(true);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetch('http://localhost:5000/api/auth/me', {
-          credentials: 'include',
-        });
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
-        if (!res.ok) throw new Error('Unauthorized');
-        const data = await res.json();
-
-        setUser(data); // ✅ set the user globally
-      } catch (err) {
-        navigate('/login');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, [navigate, setUser]);
-
-  if (loading) return <p className="dashboard-loading">Loading Dashboard...</p>;
+  if (!user) {
+    return <p className="dashboard-loading">Loading Dashboard...</p>;
+  }
 
   return (
     <div className="dashboard-container">
-      <h1>Welcome, {user?.name || 'Member'} 👋</h1>
+      <h1>Welcome, {user.name || 'Member'} 👋</h1>
+
+      {/* Membership + Role */}
       <div className="dashboard-card">
-        {/* <p><strong>User ID:</strong> {user?._id}</p> */}
-        <p><strong>Role:</strong> {user?.role}</p>
+        <p><strong>Role:</strong> {user.role}</p>
+        <p><strong>Membership Plan:</strong> Gold Membership</p>
+        <p><strong>Valid Until:</strong> Oct 15, 2025</p>
+        <p><strong>Status:</strong> Active ✅</p>
       </div>
-      <LogoutButton />
+
+      {/* Upcoming Classes */}
+      <div className="dashboard-section">
+        <h2>📅 Upcoming Classes</h2>
+        <ul>
+          <li>Thai Boxing – Friday @ 6PM</li>
+          <li>Aerobics – Sunday @ 10AM</li>
+        </ul>
+      </div>
+
+      {/* Progress */}
+      <div className="dashboard-section">
+        <h2>📊 Progress</h2>
+        <p>You’ve attended <strong>28 classes</strong> this month 👏</p>
+      </div>
+
+      {/* Announcement */}
+      <div className="dashboard-section dashboard-alert">
+        <h2>📢 Announcement</h2>
+        <p>New HIIT class starts next Monday at 5PM! Don’t miss it!</p>
+      </div>
+
+      {/* Buttons */}
+      <div className="dashboard-buttons">
+        <button className="dashboard-btn" onClick={() => navigate('/profile')}>
+          Manage Profile
+        </button>
+        <LogoutButton />
+      </div>
+
+      {/* Admin Tools */}
+      {user.role === 'admin' && (
+        <div className="dashboard-section dashboard-admin-panel">
+          <h2>🛠️ Admin Tools</h2>
+          <ul>
+            <li><Link to="/admin/users">Manage Users</Link></li>
+            <li><Link to="/admin/classes">Manage Classes</Link></li>
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

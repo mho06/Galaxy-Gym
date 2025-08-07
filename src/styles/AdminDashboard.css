@@ -12,7 +12,7 @@
 }
 
 .admin-sidebar h2 {
-  color: orange;
+  color: #01905A;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -33,7 +33,7 @@
 
 .admin-sidebar li:hover,
 .admin-sidebar .active {
-  background-color: darkgreen;
+  background-color: #01905A;
   color: white;
 }
 
@@ -44,6 +44,6 @@
 }
 
 .admin-content h3 {
-  color: darkgreen;
+  color: #01905A;
   margin-bottom: 1rem;
 }

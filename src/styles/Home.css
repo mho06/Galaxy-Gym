@@ -7,8 +7,11 @@
 
 /* HERO SECTION */
 .hero {
-  background: url('https://images.unsplash.com/photo-1571019613914-85f342c55f52?auto=format&fit=crop&w=1400&q=80') no-repeat center center / cover;
-  color: white;
+  background: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=1920&q=100')
+    no-repeat center center / cover;
+  background-attachment: fixed;
+  animation: bgZoom 20s ease-in-out infinite;
+  color: #01905A;
   padding: 6rem 1rem;
   text-align: center;
   position: relative;
@@ -17,12 +20,26 @@
   justify-content: center;
 }
 
+@keyframes bgZoom {
+  0% { background-size: 100%; }
+  50% { background-size: 105%; }
+  100% { background-size: 100%; }
+}
+
+
 .hero::after {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.45);
   z-index: 0;
+}
+
+.hero-logo {
+  max-width: 350px;
+  height: auto;
+  /* margin-bottom: 0.2rem; */
+  animation: fadeIn 1.5s ease forwards;
 }
 
 .hero-content {
@@ -35,13 +52,14 @@
 
 .hero h1 {
   font-size: 3rem;
-  color: orange;
+  color: #01905A;
   margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #01905A;
 }
 
 .hero-buttons {
@@ -62,19 +80,20 @@
 }
 
 .btn-primary {
-  background-color: orange;
-  color: black;
+  background-color: #01905A;
+  color: orange;
 }
+
 
 .btn-outline {
   background-color: transparent;
-  border: 2px solid orange;
-  color: orange;
+  border: 2px solid #01905A;
+  color: #01905A;
 }
 
 .btn-primary:hover,
 .btn-outline:hover {
-  background-color: darkgreen;
+  background-color: #03b874;
   color: white;
 }
 
@@ -87,7 +106,7 @@
 
 .about h2 {
   font-size: 2rem;
-  color: darkgreen;
+  color: #01905A;
   margin-bottom: 1rem;
 }
 
@@ -107,7 +126,7 @@
 
 .services h2 {
   font-size: 2rem;
-  color: darkgreen;
+  color: #01905A;
   margin-bottom: 2rem;
 }
 

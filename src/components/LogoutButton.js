@@ -1,34 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function LogoutButton() {
+  const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await fetch('http://localhost:5000/api/auth/logout', {
-      method: 'POST',
-      credentials: 'include',
-    });
+    try {
+      const res = await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
 
-    navigate('/login');
+      if (!res.ok) throw new Error('Logout failed');
+
+      setUser(null);
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout error:', err.message);
+      alert('Logout failed');
+    }
   };
 
-  return (
-    <button
-      onClick={handleLogout}
-      style={{
-        padding: '0.5rem 1rem',
-        backgroundColor: 'darkred',
-        color: 'white',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-        marginTop: '1rem'
-      }}
-    >
-      Logout
-    </button>
-  );
+  return <button onClick={handleLogout}>Logout</button>;
 }
 
 export default LogoutButton;

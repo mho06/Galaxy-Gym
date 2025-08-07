@@ -1,0 +1,290 @@
+/* === ADMIN LAYOUT === */
+
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* === SIDEBAR === */
+
+.admin-sidebar {
+  width: 220px;
+  background: #1a1a1a;
+  color: white;
+  padding: 2rem 1rem;
+  flex-shrink: 0;
+}
+
+.admin-sidebar h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.admin-sidebar li:hover,
+.admin-sidebar li.active {
+  background: #01905A;
+}
+
+/* === MAIN CONTENT === */
+
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f7f7f7;
+}
+
+/* === SECTION HEADINGS === */
+
+.admin-section {
+  padding: 2rem 0;
+}
+
+.admin-section h3 {
+  margin-bottom: 1rem;
+  color: #01905A;
+}
+
+/* === TABLE STYLES === */
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  background-color: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.admin-table th {
+  background-color: #f0f0f0;
+}
+
+/* === BUTTONS === */
+
+.admin-table button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  background-color: #01905A;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.admin-table .danger-btn {
+  background-color: crimson;
+}
+
+.admin-table button:hover {
+  opacity: 0.9;
+}
+
+/* === FORMS === */
+
+.admin-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-form input {
+  flex: 1 1 200px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* === RESPONSIVE BEHAVIOR === */
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .admin-sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .admin-sidebar li {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .admin-content {
+    padding: 1rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .admin-form input {
+    flex: 1 1 100%;
+  }
+}
+
+/* ===== Toolbar & Search ===== */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.admin-toolbar h3 {
+  margin: 0;
+  color: #01905A;
+}
+
+.admin-search {
+  min-width: 260px;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #cfd4dc;
+  border-radius: 6px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.admin-search:focus {
+  outline: none;
+  border-color: #01905A;
+  box-shadow: 0 0 0 3px rgba(0,128,0,0.08);
+}
+
+/* ===== Table Wrapper (horizontal scroll on small screens) ===== */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+
+/* ===== Table Base ===== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px; /* helps prevent squish on smaller screens */
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  vertical-align: middle;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.admin-table thead th {
+  background: #f6f7f9;
+  font-weight: 600;
+  color: #2a2f33;
+  border-bottom: 1px solid #e8eaee;
+  position: sticky;
+  top: 0; /* sticky header when table scrolls */
+  z-index: 1;
+}
+
+/* Pretty table additions (zebra, hover) */
+.admin-table.pretty tbody tr:nth-child(odd) td {
+  background: #fcfcfd;
+}
+.admin-table.pretty tbody tr:hover td {
+  background: #f3fff3;
+}
+
+/* Mono email style */
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.95rem;
+}
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.badge-admin {
+  background: rgba(0,128,0,0.12);
+  color: #0b6623;
+  border: 1px solid rgba(0,128,0,0.22);
+}
+.badge-member {
+  background: #eef2f7;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+/* ===== Buttons ===== */
+.btn {
+  background: #01905A;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.04s ease, opacity 0.2s ease;
+  margin-right: 0.4rem;
+}
+.btn:hover { opacity: 0.9; }
+.btn:active { transform: translateY(1px); }
+.btn.danger { background: #cc1f1a; }
+.btn.sm { padding: 0.42rem 0.7rem; font-size: 0.87rem; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .admin-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .admin-search {
+    width: 100%;
+    min-width: 0;
+  }
+  .admin-table {
+    min-width: 640px;
+  }
+}
